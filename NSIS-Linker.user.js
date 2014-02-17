@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          NSIS-Linker.user.js
-// @version       0.2.12
-// @date          2013-06-12
+// @version       0.2.13
+// @date          2014-02-17
 // @namespace     https://github.com/idleberg/NSIS-Linker.user.js/
 // @description   Links NSIS commands found on certain webpages to the scripting reference
 // @downloadURL   https://github.com/idleberg/NSIS-Linker.user.js/raw/master/NSIS-Linker.user.js
@@ -10,7 +10,9 @@
 // @match         *://forums.winamp.com/*
 // @match         *://github.com/*.nsh
 // @match         *://github.com/*.nsi
+// @match         *://github.com/NSIS-Dev/*
 // @match         *://github.com/NSIS-Handbook/*
+// @match         *://github.com/NSIS-Packages/*
 // @match         *://nsis.sf.net/*
 // @match         *://nsis.sourceforge.net/*
 // @match         *://stackoverflow.com/*
@@ -30,15 +32,15 @@ const timeBefore = new Date();
 
 // FILTERS
 
-var ref_url = "http://github.com/NSIS-Handbook/Documentation/blob/master/Reference/";
-var functions_url = "http://github.com/NSIS-Handbook/Documentation/blob/master/Functions/";
-var logiclib_url = "http://github.com/NSIS-Handbook/Documentation/blob/master/Includes/LogicLib/";
-var winver_url = "http://github.com/NSIS-Handbook/Documentation/blob/master/Includes/WinVer/";
-var filefunc_url = "http://github.com/NSIS-Handbook/Documentation/blob/master/Includes/FileFunc/";
-var textfunc_url = "http://github.com/NSIS-Handbook/Documentation/blob/master/Includes/TextFunc/";
-var wordfunc_url = "http://github.com/NSIS-Handbook/Documentation/blob/master/Includes/WordFunc/";
-var memento_url = "http://github.com/NSIS-Handbook/Documentation/blob/master/Includes/Memento/";
-var x64_url = "http://github.com/NSIS-Handbook/Documentation/blob/master/Includes/x64x/";
+var ref_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Reference/";
+var functions_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Functions/";
+var logiclib_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/LogicLib/";
+var winver_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/WinVer/";
+var filefunc_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/FileFunc/";
+var textfunc_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/TextFunc/";
+var wordfunc_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/WordFunc/";
+var memento_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/Memento/";
+var x64_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/x64x/";
 
 
 const filters = [
