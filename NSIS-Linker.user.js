@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name          NSIS-Linker.user.js
-// @version       0.2.13
+// @version       0.2.14
 // @date          2014-02-27
 // @namespace     https://github.com/idleberg/NSIS-Linker.user.js/
 // @description   Links NSIS commands found on certain webpages to the scripting reference
@@ -53,7 +53,7 @@ const filters = [
   },
   { // Callback Functions
     name: "NSIS Dev",
-    regexp: /(?:\b)?(\.onGUIEnd|\.onGUIInit|\.onInit|\.onInstFailed|\.onInstSuccess|\.onMouseOverSection|\.onRebootFailed|\.onSelChange|\.onUserAbort|\.onVerifyInstDir|un\.onGUIEnd|un\.onGUIInit|un\.onInit|un\.onRebootFailed|un\.onSelChange|un\.onUninstFailed|un\.onUninstSuccess|un\.onUserAbort)\b/g,
+    regexp: /(?:\b)?((?:\.)onGUIEnd|(?:\.)onGUIInit|(?:\.)onInit|(?:\.)onInstFailed|(?:\.)onInstSuccess|(?:\.)onMouseOverSection|(?:\.)onRebootFailed|(?:\.)onSelChange|(?:\.)onUserAbort|(?:\.)onVerifyInstDir|un\.onGUIEnd|un\.onGUIInit|un\.onInit|un\.onRebootFailed|un\.onSelChange|un\.onUninstFailed|un\.onUninstSuccess|un\.onUserAbort)\b/g,
     href: function(match) { return functions_url + match[0] + ".md"; }
   },
   {  // NSIS Plugins
@@ -74,7 +74,7 @@ const filters = [
   { // NSIS Variables
     name: "NSIS Dev",
     regexp: /(?:\$)(\{__DATE__\}|\{__FILE__\}|\{__FILEDIR__\}|\{__LINE__\}|\{__TIME__\}|\{__TIMESTAMP__\}|\{NSIS_MAX_STRLEN\}|\{NSIS_VERSION\}|\{NSISDIR\}|ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)/g,
-    href: function(match) { return variables_url + '$' + match[1] + ".md"; }
+    href: function(match) { return variables_url + match[1] + ".md"; }
   },
   { // LogicLib
     name: "NSIS Dev",
