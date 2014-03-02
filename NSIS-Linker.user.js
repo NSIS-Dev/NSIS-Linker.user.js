@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          NSIS-Linker.user.js
-// @version       0.2.14
-// @date          2014-02-27
+// @version       0.2.16
+// @date          2014-03-02
 // @namespace     https://github.com/idleberg/NSIS-Linker.user.js/
 // @description   Links NSIS commands found on certain webpages to the scripting reference
 // @downloadURL   https://github.com/idleberg/NSIS-Linker.user.js/raw/master/NSIS-Linker.user.js
@@ -32,16 +32,16 @@ const timeBefore = new Date();
 
 // FILTERS
 
-var ref_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Reference/";
-var functions_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Callbacks/";
-var variables_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Variables/";
-var logiclib_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/LogicLib/";
-var winver_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/WinVer/";
-var filefunc_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/FileFunc/";
-var textfunc_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/TextFunc/";
-var wordfunc_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/WordFunc/";
-var memento_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/Memento/";
-var x64_url = "http://github.com/NSIS-Dev/Documentation/blob/master/Includes/x64x/";
+var ref_url = "http://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Commands/";
+var functions_url = "http://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Functions/";
+var variables_url = "http://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Variables/";
+var logiclib_url = "http://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Library/LogicLib/";
+var winver_url = "http://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Library/WinVer/";
+var filefunc_url = "http://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Library/FileFunc/";
+var textfunc_url = "http://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Library/TextFunc/";
+var wordfunc_url = "http://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Library/WordFunc/";
+var memento_url = "http://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Library/Memento/";
+var x64_url = "http://idleberg.github.io/NSIS.docset/Contents/Resources/Documents/html/Library/x64x/";
 
 
 const filters = [
@@ -49,12 +49,12 @@ const filters = [
   { // Compiler Commands
     name: "NSIS Dev",
     regexp: /(?:\b)?\!(addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversionsystem|ifdef|ifmacrodef|ifmacrondef|ifndef|if|include|insertmacro|macroend|macro|packhdr|searchparse|searchreplace|tempfile|undef|verbose|warnings)\b/g,
-    href: function(match) { return ref_url + match[0] + ".md"; }
+    href: function(match) { return ref_url + match[0] + ".html"; }
   },
   { // Callback Functions
     name: "NSIS Dev",
-    regexp: /(?:\b)?((?:\.)onGUIEnd|(?:\.)onGUIInit|(?:\.)onInit|(?:\.)onInstFailed|(?:\.)onInstSuccess|(?:\.)onMouseOverSection|(?:\.)onRebootFailed|(?:\.)onSelChange|(?:\.)onUserAbort|(?:\.)onVerifyInstDir|un\.onGUIEnd|un\.onGUIInit|un\.onInit|un\.onRebootFailed|un\.onSelChange|un\.onUninstFailed|un\.onUninstSuccess|un\.onUserAbort)\b/g,
-    href: function(match) { return functions_url + match[0] + ".md"; }
+    regexp: /(?:\b)?((?!\.)onGUIEnd|(?!\.)onGUIInit|(?!\.)onInit|(?!\.)onInstFailed|(?!\.)onInstSuccess|(?!\.)onMouseOverSection|(?!\.)onRebootFailed|(?!\.)onSelChange|(?!\.)onUserAbort|(?:\.)onVerifyInstDir|un\.onGUIEnd|un\.onGUIInit|un\.onInit|un\.onRebootFailed|un\.onSelChange|un\.onUninstFailed|un\.onUninstSuccess|un\.onUserAbort)\b/g,
+    href: function(match) { return functions_url + match[0] + ".html"; }
   },
   {  // NSIS Plugins
     name: "NSIS Wiki",
@@ -64,52 +64,52 @@ const filters = [
   { // NSIS Commands
     name: "NSIS Dev",
     regexp: /\b(?!\{|\()(Abort|AddBrandingImage|AddSize|AllowRootDirInstall|AllowSkipFiles|AutoCloseWindow|BGFont|BGGradient|BrandingText|BringToFront|Call|CallInstDLL|Caption|ChangeUI|CheckBitmap|ClearErrors|CompletedText|ComponentText|CopyFiles|CRCCheck|CreateDirectory|CreateFont|CreateShortCut|Delete|DeleteINISec|DeleteINIStr|DeleteRegKey|DeleteRegValue|DetailPrint|DetailsButtonText|DirText|DirVar|DirVerify|EnableWindow|EnumRegKey|EnumRegValue|Exch|Exec|ExecShell|ExecWait|ExpandEnvStrings|File|FileBufSize|FileClose|FileErrorText|FileOpen|FileRead|FileReadByte|FileReadUTF16LE|FileReadWord|FileSeek|FileWrite|FileWriteByte|FileWriteUTF16LE|FileWriteWord|FindClose|FindFirst|FindNext|FindWindow|FlushINI|GetCurInstType|GetCurrentAddress|GetDlgItem|GetDLLVersion|GetDLLVersionLocal|GetErrorLevel|GetFileTime|GetFileTimeLocal|GetFullPathName|GetFunctionAddress|GetInstDirError|GetLabelAddress|GetTempFileName|Goto|HideWindow|Icon|IfAbort|IfErrors|IfFileExists|IfRebootFlag|IfSilent|InitPluginsDir|InstallButtonText|InstallColors|InstallDir|InstallDirRegKey|InstProgressFlags|InstType|InstTypeGetText|InstTypeSetText|IntCmp|IntCmpU|IntFmt|IntOp|IsWindow|LangString|LicenseBkColor|LicenseData|LicenseForceSelection|LicenseLangString|LicenseText|LoadLanguageFile|LockWindow|LogSet|LogText|ManifestDPIAware|ManifestSupportedOS|MessageBox|MiscButtonText|Name|Nop|OutFile|Page|Page|PageCallbacks|Pop|Push|Quit|ReadEnvStr|ReadINIStr|ReadRegDWORD|ReadRegStr|Reboot|RegDLL|Rename|RequestExecutionLevel|ReserveFile|Return|RMDir|SearchPath|SectionGetFlags|SectionGetInstTypes|SectionGetSize|SectionGetText|SectionIn|SectionSetFlags|SectionSetInstTypes|SectionSetSize|SectionSetText|SendMessage|SetAutoClose|SetBrandingImage|SetCompress|SetCompressor|SetCompressorDictSize|SetCtlColors|SetCurInstType|SetDatablockOptimize|SetDateSave|SetDetailsPrint|SetDetailsView|SetErrorLevel|SetErrors|SetFileAttributes|SetFont|SetOutPath|SetOverwrite|SetPluginUnload|SetRebootFlag|SetRegView|SetShellVarContext|SetSilent|ShowInstDetails|ShowUninstDetails|ShowWindow|SilentInstall|SilentUnInstall|Sleep|SpaceTexts|StrCmp|StrCmpS|StrCpy|StrLen|SubCaption|Unicode|UninstallButtonText|UninstallCaption|UninstallIcon|UninstallSubCaption|UninstallText|UninstPage|UninstPage|UnRegDLL|Var|VIAddVersionKey|VIFileVersion|VIProductVersion|WindowIcon|WriteINIStr|WriteRegBin|WriteRegDWORD|WriteRegExpandStr|WriteRegStr|WriteUninstaller|XPStyle)(?!\}|\))\b/g,
-    href: function(match) { return ref_url + match[1] + ".md"; }
+    href: function(match) { return ref_url + match[1] + ".html"; }
   },
   { // NSIS Sections & Functions
     name: "NSIS Dev",
     regexp: /\b(SectionGroupEnd|SectionGroup|FunctionEnd|Function|SectionEnd|Section|SubSectionEnd|SubSection|PageExEnd|PageEx)\b/g,
-    href: function(match) { return ref_url + match[1] + ".md"; }
+    href: function(match) { return ref_url + match[1] + ".html"; }
   },
   { // NSIS Variables
     name: "NSIS Dev",
     regexp: /(?:\$)(\{__DATE__\}|\{__FILE__\}|\{__FILEDIR__\}|\{__LINE__\}|\{__TIME__\}|\{__TIMESTAMP__\}|\{NSIS_MAX_STRLEN\}|\{NSIS_VERSION\}|\{NSISDIR\}|ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)/g,
-    href: function(match) { return variables_url + match[1] + ".md"; }
+    href: function(match) { return variables_url + match[1] + ".html"; }
   },
   { // LogicLib
     name: "NSIS Dev",
     regexp: /(?:\$\{)(Abort|AndIf|AndIfNot|Case|Cmd|Do|LoopUntil|DoUntil|Else|ElseIf|ElseIfNot|ElseUnless|EndIf|EndWhile|Errors|ExitDo|ExitWhile|FileExists|For|ForEach|If|IfCmd|IfNot|IfThen|IfThenNot|Loop|Next|OrIfNot|RebootFlag|SectionIsBold|SectionIsExpanded|SectionIsPartiallySelected|SectionIsReadOnly|SectionIsSectionGroup|SectionIsSectionGroupEnd|SectionIsSelected|Select|Silent|Switch|Unless|While)(?:\})/g,
-    href: function(match) { return logiclib_url + match[1] + ".md"; }
+    href: function(match) { return logiclib_url + match[1] + ".html"; }
   },
   { // WinVer
     name: "NSIS Dev",
     regexp: /(?:\$\{)(AtLeastServicePack|AtLeastWin2000|AtLeastWin2003|AtLeastWin2008|AtLeastWin2008R2|AtLeastWin2012|AtLeastWin7|AtLeastWin8|AtLeastWin95|AtLeastWin98|AtLeastWinME|AtLeastWinNT4|AtLeastWinVista|AtLeastWinXP|AtMostServicePack|AtMostWin2000|AtMostWin2003|AtMostWin2008|AtMostWin2008R2|AtMostWin2012|AtMostWin7|AtMostWin8|AtMostWin95|AtMostWin98|AtMostWinME|AtMostWinNT4|AtMostWinVista|AtMostWinXP|IsNT|IsServer|IsServicePack|IsWin2000|IsWin2003|IsWin2008|IsWin2008R2|IsWin2012|IsWin7|IsWin8|IsWin95|IsWin98|IsWinME|IsWinNT4|IsWinVista|IsWinXP)(?:\})/g,
-    href: function(match) { return winver_url + match[1] + ".md"; }
+    href: function(match) { return winver_url + match[1] + ".html"; }
   },
   { // FileFunc
     name: "NSIS Dev",
     regexp: /(?:\$\{)(BannerTrimPath|DirState|DriveSpace|GetBaseName|GetDrives|GetExeName|GetExePath|GetFileAttributes|GetFileExt|GetFileName|GetFileVersion|GetOptions|GetOptionsS|GetParameters|GetParent|GetRoot|GetSize|GetTime|Locate|RefreshShellIcons)(?:\})/g,
-    href: function(match) { return filefunc_url + match[1] + ".md"; }
+    href: function(match) { return filefunc_url + match[1] + ".html"; }
   },
   { // TextFunc
     name: "NSIS Dev",
     regexp: /(?:\$\{)(ConfigRead|ConfigReadS|ConfigWrite|ConfigWriteS|FileJoin|FileReadFromEnd|FileRecode|LineFind|LineRead|LineSum|TextCompare|TextCompareS|TrimNewLines)(?:\})/g,
-    href: function(match) { return textfunc_url + match[1] + ".md"; }
+    href: function(match) { return textfunc_url + match[1] + ".html"; }
   },
   { // WordFunc
     name: "NSIS Dev",
     regexp: /(?:\$\{)(StrFilter|StrFilterS|VersionCompare|WordAdd|WordAddS|WordFind|WordFind2x|WordFind2xS|WordFind3x|WordFind3xS|WordFindS|WordInsert|WordInsertS|WordReplace|WordReplaceS)(?:\})/g,
-    href: function(match) { return wordfunc_url + match[1] + ".md"; }
+    href: function(match) { return wordfunc_url + match[1] + ".html"; }
   },
   { // x64
     name: "NSIS Dev",
     regexp: /(?:\$\{)(DisableX64FSRedirection|EnableX64FSRedirection|RunningX64)(?:\})/g,
-    href: function(match) { return x64_url + match[1] + ".md"; }
+    href: function(match) { return x64_url + match[1] + ".html"; }
   },
   { // Memento
     name: "NSIS Dev",
     regexp: /(?:\$\{)(MementoSection|MementoSectionEnd|MementoSectionRestore|MementoSectionSave|MementoUnselectedSection)(?:\})/g,
-    href: function(match) { return memento_url + match[1] + ".md"; }
+    href: function(match) { return memento_url + match[1] + ".html"; }
   },
 ];
 
